@@ -4,29 +4,14 @@ import { CommonModule } from '@angular/common';
 
 
 import { PagesRoutingModule } from './pages-routing.module';
-import { MasterRoutingModule } from './master/master-routing.module';
+import { DndListModule } from 'ngx-drag-and-drop-lists';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    // NgbDropdownModule,
-    // DashboardsModule,
-    // AppsModule,
-    // EmailModule,
-    // ExtrasModule,
-    // UiModule,
-    // IconsModule,
-    // FormModule,
-    // ChartModule,
-    // MapsModule,
-    // TablesModule,
-    // EcommerceModule,
-    // CRMModule,
-    // AdminUIModule,
-    // ErrorModule,
-    MasterRoutingModule,
     PagesRoutingModule,
+    DndListModule
   ]
 })
 export class PagesModule { }

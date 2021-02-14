@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdministrativeComponent } from './administrative.component';
+import { CrudComponent } from './crud.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/crud', pathMatch: 'full'},

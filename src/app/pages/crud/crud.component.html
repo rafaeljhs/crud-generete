@@ -1,28 +1,171 @@
-<div class="card-box">
-  <div class="row">
-    <div class="col-12">
-      <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{error}}</ngb-alert>
+<div class="container-fluid p-2 m-2">
+  <app-page-title title="Criador de crud"></app-page-title>
+
+  <div class="card-box">
+    <div class="row">
+      <div class="col-12">
+        <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{error}}</ngb-alert>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <form class="needs-validation" [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate *ngIf="data">
+    <form class="needs-validation" [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
 
 
-      <div class="col-md-4 mb-2">
-        <input-form label='Objeto' name='object' [submitted]='submitted' [formGroup]="formGroup">
-        </input-form>
+        <div class="col-md-6 mb-2">
+          <input-form label='Objeto' type="textarea" rows="7" name='object' [submitted]='submitted'
+            [formGroup]="formGroup">
+          </input-form>
+        </div>
+
+
+        <div class="col-md-6 mb-2">
+
+          <div class="row mb-2">
+            <div class="col-md-12 mb-2">
+              <input-form label='Nome' name='name' [submitted]='submitted' [formGroup]="formGroup">
+              </input-form>
+            </div>
+            <!-- <div class="col-md-2 mb-2">
+              <input-form label='Nome' name='name' [submitted]='submitted' [formGroup]="formGroup">
+              </input-form>
+            </div> -->
+          </div>
+
+
+          <div class="row">
+
+            <div class="col-12">
+              <div class="text-right mb-3">
+                <a href="javascript:history.back()" class="btn w-sm btn-light rounded-pill waves-effect mr-1">Limpar</a>
+                <button type="submit" class="btn btn-primary block rounded-pill waves-effect waves-ligh"
+                  [disabled]="submitting">
+                  <span class="spinner-grow spinner-grow-sm mr-1" *ngIf="submitting"></span>
+                  Gerar
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-centered table-bordered mb-0">
+          <thead class="thead-light">
+            <tr>
+              <th>Atributo</th>
+              <th>Tipo</th>
+              <th>Mostra Lista</th>
+              <th>Mostra Criação/Edição</th>
+              <th class="text-right" style="width: 125px;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="submitting">
+              <td colspan="2" class="text-center">
+                <div class="preloader">
+                  <div class="status">
+                    <div class="spinner-border avatar-sm text-primary m-2" role="status">
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="listGeneral.length==0">
+              <td colspan="2" class="text-center">
+                <h5>Não existe instituições de ensino!</h5>
+              </td>
+            </tr>
+            <!-- 
+            <tr [dndType]="'item'" (dndMoved)="reorderList(item, listGeneral)" [dndDraggable] [dndObject]="item"
+            class="cursor-pointer" *ngFor="let item of listGeneral;let i = index"> -->
+
+            <tr dndDraggable (dndMoved)="reorderList(item, listGeneral)" class="cursor-pointer"
+              *ngFor="let item of listGeneral;let i = index">
+              <td>
+                {{ item.name }}
+              </td>
+              <td>
+
+                <div class="form-group mx-sm-3">
+                  <select [(ngModel)]="item.type" class="custom-select" id="status-select">
+                    <option value="string">String</option>
+                    <option value="date">Data</option>
+                    <option value="select">Select</option>
+                    <option value="number">Number</option>
+                    <option value="email">Email</option>
+                    <option value="cpf">CPF</option>
+                    <option value="cnpj">CNPJ</option>
+                    <option value="tel">Tel</option>
+                    <option value="mask">Mascara</option>
+                  </select>
+                </div>
+                <div *ngIf="item.type=='mask'" class="form-group mx-sm-3">
+                  <label for="status-select" class="mr-2"></label>
+                  <input type="text" placeholder="000.000.00-00" class="form-control">
+
+                </div>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox" name="sw1{{i}}" id="sw1{{i}}" [(ngModel)]="item.showList">
+                  {{item.showCreate?'Sim':'Não'}}
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox" name="sw2{{i}}" id="sw2{{i}}" [(ngModel)]="item.showCreate">
+                  {{item.showCreate?'Sim':'Não'}}
+                </label>
+              </td>
+
+
+              <td class="text-right">
+                <button (click)="removeItem(i)" class="btn text-danger action-icon" ngbTooltip="Remover">
+                  <i class="fe-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
       </div>
 
-      <button type="button" (click)="onSubmit()" class="btn btn-blue block waves-effect waves-ligh"
-        [disabled]="submitting">
-        <span class="spinner-grow spinner-grow-sm mr-1" *ngIf="submitting"></span>
-        Salvar
-      </button>
-
-    </form>
-    <div class="col-md-6">
-
     </div>
-  </div>
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          {{name}}s/{{name}}-create/{{name}}-create.component.html<br>
+          {{name}}s/{{name}}-create/{{name}}-create.component.scss<br>
+          {{name}}s/{{name}}-create/{{name}}-create.component.ts<br><br>
+          {{name}}s/{{name}}-list/{{name}}-create.component.html<br>
+          {{name}}s/{{name}}-list/{{name}}-create.component.scss<br>
+          {{name}}s/{{name}}-list/{{name}}-create.component.ts<br><br>
+          {{name}}s/{{name}}s-routing.module.ts<br>
+          {{name}}s/{{name}}s.module.ts<br>
+        </h5>
+      </div>
+    </div>
 
+    <div class="row">
+
+      <div class="col-12">
+        <div class="text-right my-3">
+          <a href="javascript:history.back()" class="btn w-sm btn-light rounded-pill waves-effect mr-1">Limpar</a>
+          <button type="submit" class="btn btn-primary block rounded-pill waves-effect waves-ligh"
+            [disabled]="submitting">
+            <span class="spinner-grow spinner-grow-sm mr-1" *ngIf="submitting"></span>
+            Baixar
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

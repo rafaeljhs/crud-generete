@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/master', pathMatch: 'full' },
+  // { path: '', redirectTo: '/crud', pathMatch: 'full' },
+
   {
-    path: 'master',
-    loadChildren: () => import('./master/master.module').then(m => m.MasterModule)
-  },
-  {
-    path: 'crud',
+    path: '',
     loadChildren: () => import('./crud/crud.module').then(m => m.CrudModule)
   },
   // { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },

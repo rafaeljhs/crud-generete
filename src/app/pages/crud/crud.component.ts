@@ -1,5 +1,6 @@
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { GeneralAttributes } from 'src/app/core/models/general-attributes';
 
 @Component({
   selector: 'app-crud',
@@ -8,11 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudComponent implements OnInit {
 
+  listGeneral: GeneralAttributes[] = [];
   formGroup: FormGroup;
   submitted = false;
   submitting = false;
-  error='';
-
+  error = '';
+  name: string;
 
   constructor(
     private fb: FormBuilder,
@@ -22,10 +24,31 @@ export class CrudComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.fb.group({
       object: [, Validators.required],
-     
-    });
-  }
+      name: ['payment-method', Validators.required],
 
+    });
+    this.f.object.setValue(`{
+      token : '',
+      final : '',
+      referenceLink : '',
+      customerId : '',
+      userId : '',
+      cpf : '',
+      email : ''
+    }`)
+    this.onSubmit();
+  }
+  get f() {
+    return this.formGroup.controls;
+  }
+  reorderList(item: any, list: any[]): void {
+    debugger
+    list.splice(list.indexOf(item), 1);
+  }
+  removeItem(index) {
+    this.listGeneral.slice(index, 1)
+    debugger
+  }
   async onSubmit() {
     this.submitted = true;
 
@@ -34,10 +57,23 @@ export class CrudComponent implements OnInit {
     }
 
     this.submitting = true;
-    // Object.assign(this.data, this.formGroup.value);
 
     try {
-     
+      let object = this.f.object.value;
+      const searchRegExp = /;/gi;
+      const replaceWith = '';
+      object = object.replace(searchRegExp, replaceWith);
+      let obj = eval('(' + object + ')')
+      Object.keys(obj).forEach(element => {
+        let aux = new GeneralAttributes();
+        aux.name = element;
+        aux.type = typeof (obj[element]);
+        this.listGeneral.push(aux);
+      });
+      this.name = this.f.name.value;
+      // Object.assign(this.data, this.formGroup.value);
+      this.submitted = false;
+      this.submitting = false;
     } catch (e) {
       this.submitted = false;
       this.submitting = false;
