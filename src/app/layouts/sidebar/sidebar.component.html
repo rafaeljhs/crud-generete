@@ -1,0 +1,53 @@
+<!-- ========== Left Sidebar Start ========== -->
+<ng-template #contentTemplate>
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+        <ul class="metismenu" id="side-menu" #sideMenu>
+
+            <li class="menu-title">Menu </li>
+
+            <li>
+                <a routerLink="/master/issuer/list" class="waves-effect" aria-expanded="false">
+                    <i class="fe-airplay"></i>
+                    <!-- <span class="ba dge badge-success badge-pill float-right">2</span> -->
+                    <span> Empresas </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/master/institution/list" class="waves-effect" aria-expanded="false">
+                    <i class="mdi mdi-school"></i>
+                    <!-- <span class="ba dge badge-success badge-pill float-right">2</span> -->
+                    <span> Instituições de Ensino e Cursos </span>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/master/institution-course/list" class="waves-effect" aria-expanded="false">
+                    <i class="mdi mdi-briefcase"></i>
+                    <!-- <span class="ba dge badge-success badge-pill float-right">2</span> -->
+                    <span> Cursos Cadastrados </span>
+                </a>
+            </li>
+
+
+
+
+        </ul>
+
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="clearfix"></div>
+</ng-template>
+
+
+<div class="left-side-menu">
+    <div class="slimscroll-menu" appSlimScroll *ngIf="!isCondensed">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+
+    <div class="slimscroll-menu" *ngIf="isCondensed">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+</div>
+<!-- Left Sidebar End -->

@@ -1,0 +1,207 @@
+<div class="container-fluid mt-3 app-issuer-manager">
+
+  <app-page-title class="text-success" *ngIf="!data?.Id && !loading" title="Criando Cadastro"></app-page-title>
+  <app-page-title class="text-warning" *ngIf="data?.Id && !loading" title="Editando Cadastro"></app-page-title>
+
+  <div class="mb-3">
+
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+          <div class="card-box p-3" style="border-radius: 1rem;">
+
+            <div class="row" *ngIf="loading">
+              <div class="col text-center">
+                <div class="status">
+                  <div class="spinner-border avatar-sm text-primary m-2" role="status"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row m-1">
+              <div class="col-12">
+                <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{error}}</ngb-alert>
+              </div>
+            </div>
+            <div class="my-title" *ngIf="!loading">
+              <!-- <p class="text-title">{{data.Id ? 'Editar dados' : 'Dados necessários'}}</p> -->
+
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-8 mb-3">
+                      <input-form label='Nome Fantasia' name='TradeName' [submitted]='submitted'
+                        [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <input-form label='Razão Social' name='CompanyName' [submitted]='submitted'
+                        [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                      <input-form label='CNPJ' mask="00.000.000/0000-00" type="tel" name='CNPJ' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-md-5 mb-3">
+                      <input-form label='Email' type="email" name='Email' [submitted]='submitted'
+                        [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-4  mb-3">
+
+                      <input-form label='Telefone' type="tel" mask="(00) 0000-0000||(00) 00000-0000" name='Phone'
+                        [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Login Admin' name='Login' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Senha Admin' type="password" name='Password' [submitted]='submitted'
+                        [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Valor da Carteirinha' type="number" name='CardPrice' [submitted]='submitted'
+                        [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+
+
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Data da Inativação' dateFormat="Y/m/d" type="date" name='DeactivationDate'
+                        [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-12">
+                      <h4 class="text-primary ml-2">
+                        Endereço
+                      </h4>
+                    </div>
+
+
+                    <div class="col-md-3  mb-3">
+                      <input-form label='CEP' mask="00000-000" (onfocusout)="getCEP()" name='CEP'
+                        [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                      <span class="spinner-grow spinner-grow-sm spinner-searching mr-1" *ngIf="searching"></span>
+                    </div>
+                    <div class="col-md-5  mb-3">
+                      <input-form label='Logradouro' name='Address' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-4  mb-3">
+                      <input-form label='Bairro' name='Neighborhood' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Cidade' name='City' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-2  mb-3">
+                      <input-form label='UF' name='StateUF' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+
+                    <div class="col-md-6  mb-3">
+
+                    </div>
+                    <div class="col-12">
+                      <h4 class="text-primary ml-2">
+                        Dados bancários
+                      </h4>
+                    </div>
+                    <div class="col-md-2  mb-3">
+                      <input-form label='Banco' name='BankName' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-md-2  mb-3">
+                      <input-form label='Conta' name='BankAccount' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-2  mb-3">
+                      <input-form label='Agência' name='BankBranch' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Titular' name='BankAccountHolder' [submitted]='submitted'
+                        [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                    <div class="col-md-3  mb-3">
+                      <input-form label='Movimento' name='BankMovement' [submitted]='submitted' [formGroup]="formGroup">
+                      </input-form>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-4">
+                  <div class="card-box pt-0">
+                    <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Imagem</h5>
+                    <div class="text-center mb-3" *ngIf="imageBaseUrl">
+                      <img [src]="imageBaseUrl " class="w-100">
+                    </div>
+
+                    <file-upload class="dropzone" [control]="fileUploadControl" accept="image/*">
+                      <ng-template #placeholder>
+                        <span>Arraste e solte arquivos</span>
+                      </ng-template>
+                    </file-upload>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <button *ngIf="data.Id" type="button" (click)="deleteItem()"
+                  class="btn btn-danger block waves-effect waves-ligh" [disabled]="submitting">
+                  Exluir
+                </button>
+              </div>
+              <div class="col-md-6">
+                <div class="text-right mb-3">
+                  <a href="javascript:history.back()" class="btn w-sm btn-light waves-effect mr-1">Voltar</a>
+                  <button type="submit" class="btn btn-blue block waves-effect waves-ligh" [disabled]="submitting">
+                    <span class="spinner-grow spinner-grow-sm mr-1" *ngIf="submitting"></span>
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row justify-content-center mb-4">
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-secondary btn-rounded btn-block text-bolder-black"
+                [disabled]="submitting">
+                <span class="spinner-grow spinner-grow-sm mr-1" *ngIf="submitting"></span>
+                Salvar dados
+              </button>
+            </div>
+          </div> -->
+
+
+
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

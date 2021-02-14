@@ -1,0 +1,69 @@
+<!-- Row -->
+<div class="row col-12">
+  <div class="col-12">
+    <div class="card col-12">
+      <div class="card-body col-12">
+        <div class="row col-12">
+          <div class="col-12 col-lg-8 mb-2">
+            <div class="img-container">
+              <image-cropper style="max-height: 50vh;" [maintainAspectRatio]="true" [aspectRatio]="aspectRatio"
+              [resizeToWidth]="800" [resizeToHeight]="600" format="png" [imageBase64]="imageBase64" [containWithinAspectRatio]="containWithinAspectRatio"
+                [transform]="transform" [canvasRotation]="canvasRotation" (imageCropped)="imageCropped($event)">
+              </image-cropper>
+
+              <!-- <image-cropper
+
+              [maintainAspectRatio]="true"
+              [containWithinAspectRatio]="containWithinAspectRatio"
+              [aspectRatio]="4 / 3"
+              [imageBase64]="imageBase64"
+              [resizeToWidth]="256"
+              [cropperMinWidth]="128"
+              [onlyScaleDown]="true"
+              [roundCropper]="false"
+              [canvasRotation]="canvasRotation"
+              [transform]="transform"
+              [alignImage]="'left'"
+              [style.display]="showCropper ? null : 'none'"
+              format="png"
+              (imageCropped)="imageCropped($event)"
+
+          ></image-cropper> -->
+
+              <!-- <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+                format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+              </image-cropper> -->
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 mb-2">
+            <div class="col-12 text-center">
+              <img [src]="croppedImage" style="width: 100%; max-width: 256px;" />
+            </div>
+            <div class="text-center my-2">
+              <button (click)="rotateLeft()" class="btn btn-secondary btn-sm m-1">
+                Rotacionar</button>
+              <button (click)="flipHorizontal()" class="btn btn-secondary btn-sm m-1">
+                Flip horizontal</button>
+              <button (click)="flipVertical()" class="btn btn-secondary btn-sm m-1">
+                Flip vertical</button>
+
+              <button (click)="zoom(-.1)" class="btn btn-secondary btn-sm m-1">
+                Zoom-</button>
+
+              <button (click)="zoom(.1)" class="btn btn-secondary btn-sm m-1">
+                Zoom+</button>
+            </div>
+          </div>
+        </div>
+        <div class="row col-12">
+          <div class="col-12 text-right">
+            <button class="btn btn-secondary waves-effect waves-ligh mr-1" (click)="dismiss()">Cancelar</button>
+            <button class="btn btn-blue waves-effect waves-ligh" (click)="close()">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

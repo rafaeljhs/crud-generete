@@ -1,0 +1,92 @@
+<ngx-spinner></ngx-spinner>
+<div class="app-administrative">
+    <header class="pt-3 pb-2 header">
+        <div class="row">
+            <img [src]="currentUser.userImage" class="userImage" />
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8 text-center">
+                <h4>Painel Administrativo do Centro Estudantil</h4>
+            </div>
+            <div class="col-md-2 text-right">
+                <button (click)="logout()" class="btn btn-outline-primary btn-rounded btn-getOut">
+                    <i class="fe-log-out"></i>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- <div class="container-fluid"> -->
+    <!-- <div class="row">
+            <div class="col-12"> -->
+    <div>
+        <div>
+            <div>
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <button (click)="select('all')" [ngClass]="type=='all'?'btn-primary':'btn-outline-primary'"
+                                class="btn btn-block btn--md  btn-rounded my-2" type="button">
+                                Todos os cadastros
+                            </button>
+                            <button (click)="select('Approved')"
+                                [ngClass]="type=='Approved'?'btn-primary':'btn-outline-primary'"
+                                class="btn btn-block btn--md  btn-rounded my-2" type="button">
+                                Cadastros aprovados
+                            </button>
+
+                            <button (click)="select('Pending')"
+                                [ngClass]="type=='Pending'?'btn-primary':'btn-outline-primary'"
+                                class="btn btn-block btn--md  btn-rounded my-2" type="button">
+                                Cadastros pendentes
+                            </button>
+                            <button (click)="select('Rejected')"
+                                [ngClass]="type=='Rejected'?'btn-primary':'btn-outline-primary'"
+                                class="btn btn-block btn--md btn-rounded my-2" type="button">
+                                Cadastros negados
+                            </button>
+                            <button (click)="select('Expired')"
+                                [ngClass]="type=='Expired'?'btn-primary':'btn-outline-primary'"
+                                class="btn btn-block btn--md  btn-rounded my-2" type="button">
+                                Cadastros expirado
+                            </button>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <h3>Lista de estudantes:</h3>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search">
+                                        <input type="text" class="form-control" placeholder="Pesquisar..." name="search"
+                                            [(ngModel)]="searchModel" (ngModelChange)="search()" />
+                                        <i class="fe-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="loading" class="text-center">
+                                <div class="spinner-border text-primary m-2" role="status"></div>
+                            </div>
+                            <div *ngIf="!loading && allStudent.length==0 " class="text-center">
+                                <h5>Não existe estudantes!</h5>
+                            </div>
+                            <div *ngIf="!loading  && allStudent.length!=0">
+                                <app-student-list-item (edit)="edit(item)" [item]="item" *ngFor="let item of allStudent">
+                                </app-student-list-item>
+                                <ul class="pagination pagination-rounded justify-content-end my-2">
+                                    <ngb-pagination [collectionSize]="totalRecords" (pageChange)="changeIndex($event)"
+                                        [(page)]="page" [pageSize]="pageSize">
+                                    </ngb-pagination>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

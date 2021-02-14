@@ -1,0 +1,37 @@
+.app-administrative {
+  .userImage {
+    height: 50px;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+  }
+  .btn-getOut {
+    border-color: transparent;
+  }
+  .header {
+    border-bottom: 1px solid gray;
+    padding: 20px 16px 8px 16px;
+    background: white;
+  }
+  .search {
+    position: relative;
+    input {
+      padding-right: 35px;
+    }
+    .fe-search {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .userImage {
+      position: relative;
+    }
+    h4{
+      margin-top: 30px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<div class="card-box">
+  <div class="row">
+    <div class="col-12">
+      <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{error}}</ngb-alert>
+    </div>
+  </div>
+  <div class="row">
+    <form class="needs-validation" [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate *ngIf="data">
+
+
+      <div class="col-md-4 mb-2">
+        <input-form label='Objeto' name='object' [submitted]='submitted' [formGroup]="formGroup">
+        </input-form>
+      </div>
+
+      <button type="button" (click)="onSubmit()" class="btn btn-blue block waves-effect waves-ligh"
+        [disabled]="submitting">
+        <span class="spinner-grow spinner-grow-sm mr-1" *ngIf="submitting"></span>
+        Salvar
+      </button>
+
+    </form>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+
+</div>
