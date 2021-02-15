@@ -1,6 +1,7 @@
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { GeneralAttributes } from 'src/app/core/models/general-attributes';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-crud',
@@ -44,6 +45,9 @@ export class CrudComponent implements OnInit {
   reorderList(item: any, list: any[]): void {
     debugger
     list.splice(list.indexOf(item), 1);
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.listGeneral, event.previousIndex, event.currentIndex);
   }
   removeItem(index) {
     this.listGeneral.slice(index, 1)

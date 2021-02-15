@@ -1,14 +1,12 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputFormModule } from 'src/app/components/input-form/input-form.module';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CrudComponent } from './crud.component';
 import { UIModule } from 'src/app/components/ui/ui.module';
 import { CrudRoutingModule } from './crud-routing.module';
-import { DndListModule } from 'ngx-drag-and-drop-lists';
-
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +16,8 @@ import { DndListModule } from 'ngx-drag-and-drop-lists';
     InputFormModule,
     CrudRoutingModule,
     UIModule,
-    DndListModule
+    NgbTabsetModule,
+    DragDropModule
   ],
   declarations: [CrudComponent]
 })
