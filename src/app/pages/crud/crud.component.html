@@ -30,16 +30,14 @@
               </input-form>
             </div>
             <div class="col-md-4 mb-2">
-              <input-form label='Criação/Edição' name='nameCreate' [submitted]='submitted'
-                [formGroup]="formGroup">
+              <input-form label='Criação/Edição' name='nameCreate' [submitted]='submitted' [formGroup]="formGroup">
               </input-form>
             </div>
             <div class="col-md-4 mb-2">
-              <input-form label='Listagem' name='nameList' [submitted]='submitted'
-                [formGroup]="formGroup">
+              <input-form label='Listagem' name='nameList' [submitted]='submitted' [formGroup]="formGroup">
               </input-form>
             </div>
-           
+
           </div>
 
 
@@ -72,17 +70,20 @@
       <ngb-tabset>
         <ngb-tab title="Atributos">
           <ng-template ngbTabContent>
-              <app-crud-list [list]="listAll" [listCreate]="listCreate" [listList]="listList" [submitting]="submitting" ></app-crud-list>
+            <app-crud-list [list]="listAll" [listCreate]="listCreate" [listList]="listList" [submitting]="submitting">
+            </app-crud-list>
           </ng-template>
         </ngb-tab>
         <ngb-tab title="Criação/Edição">
           <ng-template ngbTabContent>
-            <app-crud-list [list]="listCreate" [listCreate]="listCreate" [listList]="listList"  [submitting]="submitting"></app-crud-list>
+            <app-crud-list [cols]="true" [list]="listCreate" [listCreate]="listCreate" [listList]="listList"
+              [submitting]="submitting"></app-crud-list>
           </ng-template>
         </ngb-tab>
         <ngb-tab title="Lista">
           <ng-template ngbTabContent>
-            <app-crud-list [list]="listList" [listCreate]="listCreate" [listList]="listList"  [submitting]="submitting"></app-crud-list>
+            <app-crud-list [cols]="true" [list]="listList" [listCreate]="listCreate" [listList]="listList"
+              [submitting]="submitting"></app-crud-list>
 
           </ng-template>
         </ngb-tab>

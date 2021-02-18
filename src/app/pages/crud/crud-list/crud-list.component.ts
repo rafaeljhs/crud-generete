@@ -9,9 +9,10 @@ import { GeneralAttributes } from 'src/app/core/models/general-attributes';
 })
 export class CrudListComponent implements OnInit {
 
-  @Input() list = [];
-  @Input() listList = [];
-  @Input() listCreate = [];
+  @Input() list : GeneralAttributes[] = [];
+  @Input() listList : GeneralAttributes[] = [];
+  @Input() listCreate: GeneralAttributes[] = [];
+  @Input() cols= false;
 
   @Input() submitting = false;;
 
@@ -20,12 +21,10 @@ export class CrudListComponent implements OnInit {
   ngOnInit(): void {
   }
   drop(event: CdkDragDrop<string[]>) {
-    debugger
     moveItemInArray(this.list, event.previousIndex, event.currentIndex);
   }
   removeItem(index) {
-    debugger
-    this.list.slice(index, 1)
+    this.list.splice(index, 1)
   }
   addList(item) {
     if (item.showList && !this.listList.find(x => x.name == item.name)) {

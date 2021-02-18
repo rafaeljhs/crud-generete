@@ -8,6 +8,7 @@
             <th>Tipo</th>
             <th>Mostra Lista</th>
             <th>Mostra Criação/Edição</th>
+            <th *ngIf="cols">Colunas</th>
             <th class="text-right" style="width: 125px;">Ações</th>
           </tr>
         </thead>
@@ -52,6 +53,7 @@
                   <option value="cnpj">CNPJ</option>
                   <option value="tel">Tel</option>
                   <option value="mask">Mascara</option>
+                  <option value="moeda">Moeda</option>
                 </select>
               </div>
               <div *ngIf="item.type=='mask'" class="form-group mx-sm-3">
@@ -72,7 +74,11 @@
                 {{item.showCreate?'Sim':'Não'}}
               </label>
             </td>
-
+            <td *ngIf="cols">
+              <label>
+                <input type="number" min="1" max="12"  [(ngModel)]="item.cols">
+              </label>
+            </td>
 
             <td class="text-right">
               <button (click)="removeItem(i)" class="btn text-danger action-icon" ngbTooltip="Remover">

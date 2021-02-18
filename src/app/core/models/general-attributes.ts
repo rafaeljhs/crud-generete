@@ -4,4 +4,5 @@ export class GeneralAttributes {
   mask: string;
   showList = true;
   showCreate = true;
+  cols = 2;
 }
